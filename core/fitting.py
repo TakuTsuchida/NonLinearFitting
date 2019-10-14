@@ -1,15 +1,17 @@
-from config import dataframe, array
+from core.config import dataframe, array
 
 
-def exp_data(df: dataframe, columns: list, period: tuple) -> array:
-    start, end = period if period else df.index[0], df.index[-1]
-    return df.loc[start:end, columns].values
+def exp_data(df: dataframe, columns: list) -> array:
+    return df[columns].values
 
 
-def obj_data(df: dataframe, col: str, period: tuple) -> array:
+def obj_data(df: dataframe, col: str) -> array:
+    return df[col].values
+
+
+def predict(xs, coef, intercept):
     import numpy as np
-    start, end = period if period else df.index[0], df.index[-1]
-    return np.array(df[col][start:end])
+    return np.dot(xs, coef) + intercept
 
 
 def least_squares(xs: array, y: array) -> tuple:
