@@ -9,7 +9,7 @@ def obj_data(df: dataframe, col: str) -> array:
     return df[col].values
 
 
-def predict(xs, coef, intercept):
+def predict(xs: array, coef: list, intercept: float) -> array:
     import numpy as np
     return np.dot(xs, coef) + intercept
 
